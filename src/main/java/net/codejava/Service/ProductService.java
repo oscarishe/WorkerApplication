@@ -15,7 +15,13 @@ public class ProductService {
 	public List<Product> listAll() {
 		return repo.findAll();
 	}
-	
+	public float totalPrice() {
+		List<Product> product = repo.findAll();
+		float sum =0;
+		for(int i=0;i<product.size();i++)
+			sum = sum + product.get(i).getPrice();
+		return sum;
+	}
 	public void save(Product product) {
 		repo.save(product);
 	}
