@@ -42,4 +42,12 @@ public class Worker {
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

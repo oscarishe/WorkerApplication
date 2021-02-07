@@ -3,8 +3,10 @@ package net.codejava.Controller;
 import java.util.List;
 
 import net.codejava.Model.Product;
+import net.codejava.Model.User;
 import net.codejava.Model.Worker;
 import net.codejava.Service.ProductService;
+import net.codejava.Service.UserService;
 import net.codejava.Service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,20 +22,10 @@ public class AppController {
 	@Autowired
 	private ProductService service;
 	@Autowired
-	private WorkerService workService;
+	private WorkerService workerService;
+	@Autowired
+	private UserService userService;
 
-
-	@RequestMapping("/")
-	public String viewHomePage(Model model) {
-		List<Product> listProducts = service.listAll();
-		float totalPrice = service.totalPrice();
-		List<Worker> listWorker = workService.listAll();
-		model.addAttribute("listWorker", listWorker);
-		model.addAttribute("listProducts", listProducts);
-		model.addAttribute("totalPrice", totalPrice);
-		return "index";
-	}
-	
 	@RequestMapping("/new")
 	public String showNewProductForm(Model model) {
 		Product product = new Product();
@@ -61,8 +53,8 @@ public class AppController {
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable(name = "id") Long id) {
-		service.delete(id);
-		
+		workerService.delete(id);
+		userService.delete(id);
 		return "redirect:/";
 	}
 }

@@ -26,41 +26,36 @@
 	<table border="1" cellpadding="10" id="mainTable">
 		<thead>
 			<tr>
-				<th onclick="sortTable(0)">Product ID</th>
-				<th onclick="sortTable(1)">Name</th>
-				<th onclick="sortTable(2)">Brand</th>
-				<th onclick="sortTable(3)">Made In</th>
-				<th onclick="sortTable(4)">Price</th>
-				
-				<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>				
+				<th onclick="sortTable(0)">ID</th>
+				<th onclick="sortTable(1)">Имя</th>
+				<th onclick="sortTable(2)">Фамилия</th>
+				<th onclick="sortTable(3)">Отчество</th>
+				<th onclick="sortTable(4)">Никнейм</th>
+				<!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 				
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="product : ${listProducts}">
-				<td th:text="${product.id}">Product ID</td>
-				<td th:text="${product.name}">Name</td>
-				<td th:text="${product.brand}">Brand</td>
-				<td th:text="${product.madein}">Made in</td>
-				<td th:text="${product.price}">Price</td>
-				
+
+			<tr th:each="worker : ${listWorker}">
+
+				<td th:text="${worker.id}"></td>
+				<td th:text="${worker.name}"></td>
+				<td th:text="${worker.surname}"></td>
+				<td th:text="${worker.patronymic}"></td>
+				<td></td>
 				<td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
-					<a th:href="@{'/edit/' + ${product.id}}">Edit</a>			
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${product.id}}">Delete</a>
+					<!--<a th:href="@{'/edit/' + ${product.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;-->
+					<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}">Delete</a>
 				</td>
 			</tr>
+
 		</tbody>
 	</table>
-	<h1 th:text="${totalPrice}">Общая стоимость</h1>
+
 	<h1><a1 href="workers">Работяги</a1></h1>
-	<table>
-		<tr th:each="worker: ${listWorker}">
-			<td th:text="${worker.name}"></td>
-			<td th:text="${worker.surname}"></td>
-			<td th:text="${worker.patronymic}"></td>
-		</tr>
-	</table>
+
 </div>
 <script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
 </body>
