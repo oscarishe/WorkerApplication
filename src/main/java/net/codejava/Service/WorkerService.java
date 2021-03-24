@@ -16,8 +16,9 @@ public class WorkerService {
     public List<Worker> listAll() {
         return repo.findAll();
     }
-    public void save(Worker product) {
-        repo.save(product);
+
+    public void save(Worker worker) {
+        repo.save(worker);
     }
 
     public Worker get(Long id) {
@@ -26,5 +27,8 @@ public class WorkerService {
 
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+    public int getCountOfWorkers() {
+        return repo.findAll().size();
     }
 }
