@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <title>Отделы организации</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+    <table border="1" cellpadding="10" id="mainTable">
+        <tr th:each="department: ${listDep}">
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.name}"></td>
+            <td th:text="${department.}"></td>
+        </tr>
+    </table>
+</body>
+</html>

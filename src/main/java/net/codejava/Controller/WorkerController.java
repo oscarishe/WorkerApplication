@@ -1,7 +1,5 @@
 package net.codejava.Controller;
 
-import net.codejava.Model.Product;
-import net.codejava.Model.User;
 import net.codejava.Model.Worker;
 import net.codejava.Service.UserService;
 import net.codejava.Service.WorkerService;
@@ -41,19 +39,18 @@ public class WorkerController {
         Worker worker = new Worker();
         model.addAttribute("worker", worker);
 
-        return "new_product";
+        return "new_worker";
 
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveWorker(@ModelAttribute("worker") Worker worker) {
         workService.save(worker);
-        System.out.println(worker.getBirthdayDate());
-        System.out.println(worker.getEmployDate());
+
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditProductForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_product");
+        ModelAndView mav = new ModelAndView("edit_worker");
 
         Worker worker = workService.get(id);
         mav.addObject("worker", worker);

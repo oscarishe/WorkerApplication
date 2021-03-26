@@ -22,13 +22,24 @@ public class Worker {
     private String name;
     private String surname;
     private String patronymic;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date employDate;
+    private LocalDate employDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birthdayDate;
+    private LocalDate birthdayDate;
     private String education;
     private String position;
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    private Long departmentId;
+
+
     public String getName() {
         return name;
     }
@@ -61,21 +72,7 @@ public class Worker {
         this.worker_id = id;
     }
 
-    public Date getBirthdayDate() {
-        return birthdayDate;
-    }
 
-    public void setBirthdayDay(Date birthdayDate) {
-        this.birthdayDate = birthdayDate;
-    }
-
-    public Date getEmployDate() {
-        return employDate;
-    }
-
-    public void setEmployDate(Date employDate) {
-        this.employDate = employDate;
-    }
 
     public String getEducation() {
         return education;
@@ -91,5 +88,21 @@ public class Worker {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public LocalDate getEmployDate() {
+        return employDate;
+    }
+
+    public void setEmployDate(LocalDate employDate) {
+        this.employDate = employDate;
+    }
+
+    public LocalDate getBirthdayDate() {
+        return birthdayDate;
+    }
+
+    public void setBirthdayDate(LocalDate birthdayDate) {
+        this.birthdayDate = birthdayDate;
     }
 }
