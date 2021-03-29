@@ -44,6 +44,13 @@
 					<td><input type="text" th:field="*{position}" /></td>
 				</tr>
 				<tr>
+					<td>
+						<select th:field="*{departmentId}">
+							<option th:each="department : ${listDep}" th:value="${department.id}"><span th:text="${department.name}"></span></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2"><button type="submit">Save</button></td>
 				</tr>
 			</table>

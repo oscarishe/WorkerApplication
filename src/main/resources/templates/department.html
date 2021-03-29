@@ -7,11 +7,18 @@
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
 </head>
 <body>
+    <a href="new_department">Создать новый отдел</a>
+    <a href="/">Вернуться на главную</a>
     <table border="1" cellpadding="10" id="mainTable">
         <tr th:each="department: ${listDep}">
             <td th:text="${department.id}"></td>
             <td th:text="${department.name}"></td>
-            <td th:text="${department.}"></td>
+            <td><span th:text="${department.count}"></span>/<span th:text="${department.slots}"></span></td>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
+                <a th:href="@{'/edit_department/' + ${department.id}}">Редактировать</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete_department/' + ${department.id}}">Удалить</a>
+            </td>
         </tr>
     </table>
 </body>

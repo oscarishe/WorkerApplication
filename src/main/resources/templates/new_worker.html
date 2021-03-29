@@ -13,32 +13,39 @@
 			<table border="0" cellpadding="10">
 				<tr>
 					<td>Имя:</td>
-					<td><input type="text" th:field="*{name}" /></td>
+					<td><input type="text" th:field="*{name}" required /></td>
 				</tr>
 				<tr>
 					<td>Фамилия:</td>
-					<td><input type="text" th:field="*{surname}" /></td>
+					<td><input type="text" th:field="*{surname}" required /></td>
 				</tr>				
 				<tr>
 					<td>Отчество:</td>
-					<td><input type="text" th:field="*{patronymic}" /></td>
+					<td><input type="text" th:field="*{patronymic}" required /></td>
 				</tr>
 				<tr>
 					<td>Дата трудоустройства</td>
-					<td><input type="date" th:field="*{employDate}"/></td>
+					<td><input type="date" th:field="*{employDate}" required /></td>
 				</tr>
 				<tr>
 					<td>Дата рождения</td>
-					<td><input type="date" th:field="*{birthdayDate}"/></td>
+					<td><input type="date" th:field="*{birthdayDate}" required /></td>
 				</tr>
 
 				<tr>
 					<td>Образование</td>
-					<td><input type="text" th:field="*{education}" /></td>
+					<td><input type="text" th:field="*{education}" required /></td>
 				</tr>
 				<tr>
 					<td>Должность</td>
-					<td><input type="text" th:field="*{position}" /></td>
+					<td><input type="text" th:field="*{position}" required /></td>
+				</tr>
+				<tr>
+					<td>
+						<select th:field="*{departmentId}">
+							<option th:each="department : ${listDep}" th:value="${department.id}"><span th:text="${department.name}"></span></option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="submit">Save</button></td>

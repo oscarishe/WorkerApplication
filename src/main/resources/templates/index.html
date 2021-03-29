@@ -57,7 +57,7 @@
 				<td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
 					<a th:href="@{'/edit/' + ${worker.id}}">Редактировать</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}">Удалить</a>
+					<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите удалить сотрудника?')">Удалить</a>
 				</td>
 			</tr>
 

@@ -9,6 +9,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private int slots;
 
     private int count;
     public String getName() {
@@ -27,12 +28,18 @@ public class Department {
         this.id = id;
     }
 
-    public int getCount(Long id) {
+    public int getCount() {
         return count;
     }
-
     public void setCount(int count) {
         this.count = count;
     }
 
+    public int getSlots() {
+        return slots;
+    }
+
+    public void setSlots(int slots) {
+        this.slots = slots;
+    }
 }
