@@ -1,8 +1,10 @@
 package net.codejava.Controller;
 
 import net.codejava.Model.Department;
+import net.codejava.Model.Fired;
 import net.codejava.Model.Worker;
 import net.codejava.Service.DepartmentService;
+import net.codejava.Service.FiredWorkerService;
 import net.codejava.Service.UserService;
 import net.codejava.Service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +27,12 @@ public class WorkerController {
     private UserService userService;
     @Autowired
     private DepartmentService depService;
+    @Autowired
+    private FiredWorkerService fireService;
 
     @RequestMapping("/")
     public String viewHomePage(Model model) {
-        List<Worker> listWorker = workService.listAll();
+        List<Worker> listWorker = workService.listAllActive();
         model.addAttribute("workerCount", workService.getCountOfWorkers());
         model.addAttribute("listWorker", listWorker);
         return "index";
@@ -36,6 +40,16 @@ public class WorkerController {
     @RequestMapping("/delete/{id}")
     public String deleteWorker(@PathVariable(name = "id") Long id) {
         workService.delete(id);
+        return "redirect:/";
+    }
+    @RequestMapping("/fire/{id}")
+    public String fireWorker(@PathVariable(name = "id") Long id) {
+        Worker worker = workService.get(id);
+        worker.setActive(false);
+        workService.save(worker);
+        Fired firedWorker = new Fired();
+        firedWorker.setWorker(id);
+        fireService.save(firedWorker);
         return "redirect:/";
     }
     @RequestMapping("/new")
@@ -49,6 +63,7 @@ public class WorkerController {
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveWorker(@ModelAttribute("worker") Worker worker) {
+        worker.setActive(true);
         workService.save(worker);
 
         return "redirect:/";

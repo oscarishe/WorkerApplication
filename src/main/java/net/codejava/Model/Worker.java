@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 @Entity
@@ -28,6 +29,15 @@ public class Worker {
     private LocalDate birthdayDate;
     private String education;
     private String position;
+    private boolean isActive;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     public Long getDepartmentId() {
         return departmentId;
@@ -104,5 +114,9 @@ public class Worker {
 
     public void setBirthdayDate(LocalDate birthdayDate) {
         this.birthdayDate = birthdayDate;
+    }
+
+    public int getAge() {
+        return Period.between(this.birthdayDate, LocalDate.now()).getYears();
     }
 }

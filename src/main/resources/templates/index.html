@@ -50,7 +50,7 @@
 				<td th:text="${worker.name}"></td>
 				<td th:text="${worker.surname}"></td>
 				<td th:text="${worker.patronymic}"></td>
-				<td th:text="${worker.birthdayDate}"></td>
+				<td th:text="${worker.getAge()}"></td>
 				<td th:text="${worker.employDate}"></td>
 				<td th:text="${worker.education}"></td>
 				<td th:text="${worker.position}"></td>
@@ -58,6 +58,7 @@
 					<a th:href="@{'/edit/' + ${worker.id}}">Редактировать</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите удалить сотрудника?')">Удалить</a>
+					<a th:href="@{'/fire/' + ${worker.id}}">Уволить сотрудника</a>
 				</td>
 			</tr>
 

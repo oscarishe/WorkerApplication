@@ -1,10 +1,12 @@
 package net.codejava.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.codejava.Model.Worker;
 import net.codejava.Repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,7 +18,9 @@ public class WorkerService {
     public List<Worker> listAll() {
         return repo.findAll();
     }
-
+    public List<Worker> listAllActive() {
+        return repo.listAllActive();
+    }
     public void save(Worker worker) {
         repo.save(worker);
     }
@@ -29,6 +33,7 @@ public class WorkerService {
         repo.deleteById(id);
     }
     public int getCountOfWorkers() {
+
         return repo.findAll().size();
     }
 }
