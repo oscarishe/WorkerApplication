@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+
+<h1>Карточка сотрудника</h1>
+<h2>ID:</h2>
+<p><span th:text="${worker.id}" id="workerId"></span></p>
+<h2>ФИО:</h2>
+<p><span th:text="${worker.surname}"></span> <span th:text="${worker.name}"></span> <span th:text="${worker.patronymic}"></span> </p>
+<h2>Отдел:</h2>
+<button onclick="openDeleteForm()">
+    Уволить сотрудника
+</button>
+        <div id="deleteForm">
+            <form action="#" th:action="@{/fire}" th:object="${fired}" method="post">
+        <input id="workerIdField" th:field ="*{worker}" readonly><br>
+        <label> Причина увольнения <br>
+        <input type="text" th:field="*{reason}">
+        </label>
+        <br>
+        <input type="submit" value="Уволить сотрудника">
+            </form>
+        </div>
+
+<script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
+</body>
+</html>

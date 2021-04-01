@@ -62,3 +62,12 @@ function sortTable(n) {
         }
     }
 }
+
+function openDeleteForm() {
+    var form = document.getElementById('deleteForm');
+    form.style.display = "block";
+    var id = document.getElementById("workerId").textContent;
+    console.log(id);
+    document.getElementById("workerIdField").value = id;
+    console.log(id);
+}

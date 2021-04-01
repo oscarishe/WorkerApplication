@@ -4,3 +4,6 @@ th:hover {
 tr:hover {
     background-color:yellow;
 }
+#deleteForm {
+    display:none;
+}

@@ -21,6 +21,9 @@ public class WorkerService {
     public List<Worker> listAllActive() {
         return repo.listAllActive();
     }
+    public List<Worker> listAllunactive() {
+        return repo.listAllUnactive();
+    }
     public void save(Worker worker) {
         repo.save(worker);
     }

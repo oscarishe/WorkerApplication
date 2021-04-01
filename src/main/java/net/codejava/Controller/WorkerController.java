@@ -52,6 +52,15 @@ public class WorkerController {
         fireService.save(firedWorker);
         return "redirect:/";
     }
+    @RequestMapping(value = "/fire", method = RequestMethod.POST)
+    public String fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker) {
+        Worker worker = workService.get(firedWorker.getWorker());
+        worker.setActive(false);
+        workService.save(worker);
+        fireService.save(firedWorker);
+        System.out.println("Уволен сотрудник" + firedWorker.getWorker() + firedWorker.getDate());
+        return "redirect:/";
+    }
     @RequestMapping("/new")
     public String showNewProductForm(Model model) {
         Worker worker = new Worker();
@@ -59,7 +68,6 @@ public class WorkerController {
         model.addAttribute("worker", worker);
         model.addAttribute("listDep",listDep);
         return "new_worker";
-
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveWorker(@ModelAttribute("worker") Worker worker) {
@@ -75,7 +83,25 @@ public class WorkerController {
         Worker worker = workService.get(id);
         mav.addObject("listDep",listDep);
         mav.addObject("worker", worker);
-
         return mav;
+    }
+    @RequestMapping("/profile/{id}")
+    public ModelAndView showWorkerProfile(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("profile");
+        Fired firedWorker = new Fired();
+        Worker worker = workService.get(id);
+        Department dep = depService.get(worker.getDepartmentId());
+        mav.addObject("fired", firedWorker);
+        mav.addObject("dep", dep);
+        mav.addObject("worker", worker);
+        return mav;
+    }
+    @RequestMapping("/fired_list")
+    public String getFiredList(Model model) {
+        List <Worker> listWorker   = workService.listAllunactive();
+        List <Fired> firedList = fireService.listAll();
+        model.addAttribute("listWorker", listWorker);
+        model.addAttribute("firedList",firedList);
+        return "fired_list";
     }
 }

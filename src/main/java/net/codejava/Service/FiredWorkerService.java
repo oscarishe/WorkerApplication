@@ -21,7 +21,9 @@ public class FiredWorkerService {
         worker.setDate();
         repo.save(worker);
     }
-
+    public Fired getByWorkerId(Long id) {
+        return repo.getByWorkerId(id);
+    }
     public Fired get(Long id) {
         return repo.findById(id).get();
     }

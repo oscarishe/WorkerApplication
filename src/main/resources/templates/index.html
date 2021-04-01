@@ -23,6 +23,7 @@
 		<a href="new">Создать нового работника</a>
 		<br>
 		<a href="department">Отделы организации</a>
+		<a href="fired_list">Уволенные сотрудники</a>
 	</div>
 	
 	<br/><br/>
@@ -45,7 +46,7 @@
 		<tbody>
 
 			<tr th:each="worker : ${listWorker}">
-
+				<a th:href="@{'/profile/' + ${worker.id}}">
 				<td th:text="${worker.id}"></td>
 				<td th:text="${worker.name}"></td>
 				<td th:text="${worker.surname}"></td>
@@ -60,6 +61,7 @@
 					<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите удалить сотрудника?')">Удалить</a>
 					<a th:href="@{'/fire/' + ${worker.id}}">Уволить сотрудника</a>
 				</td>
+				</a>
 			</tr>
 
 		</tbody>
