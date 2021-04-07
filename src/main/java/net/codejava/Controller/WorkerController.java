@@ -48,17 +48,17 @@ public class WorkerController {
         worker.setActive(false);
         workService.save(worker);
         Fired firedWorker = new Fired();
-        firedWorker.setWorker(id);
+        firedWorker.setIdentity(id);
         fireService.save(firedWorker);
         return "redirect:/";
     }
     @RequestMapping(value = "/fire", method = RequestMethod.POST)
     public String fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker) {
-        Worker worker = workService.get(firedWorker.getWorker());
+        Worker worker = workService.get(firedWorker.getIdentity());
         worker.setActive(false);
         workService.save(worker);
         fireService.save(firedWorker);
-        System.out.println("Уволен сотрудник" + firedWorker.getWorker() + firedWorker.getDate());
+        System.out.println("Уволен сотрудник" + firedWorker.getIdentity() + firedWorker.getDate());
         return "redirect:/";
     }
     @RequestMapping("/new")

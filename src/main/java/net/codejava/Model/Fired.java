@@ -12,17 +12,18 @@ public class Fired {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long worker;
+    private Long identity;
     private String reason;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    public Long getWorker() {
-        return worker;
+
+    public Long getIdentity() {
+        return identity;
     }
 
-    public void setWorker(Long worker) {
-        this.worker = worker;
+    public void setIdentity(Long identity) {
+        this.identity = identity;
     }
 
     public Long getId() {
@@ -40,6 +41,7 @@ public class Fired {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
 
     public LocalDate getDate() {
         return date;

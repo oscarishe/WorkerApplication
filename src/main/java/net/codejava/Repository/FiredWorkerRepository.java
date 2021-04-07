@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface FiredWorkerRepository extends JpaRepository<Fired, Long> {
 
-        @Query("select  u from Fired u where u.worker = ?1")
+        @Query("select  u from Fired u where u.identity = ?1")
         public Fired getByWorkerId(Long id);
 }

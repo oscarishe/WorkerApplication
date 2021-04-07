@@ -21,6 +21,7 @@
             <th onclick="sortTable(5)">Дата трудоустройства</th>
             <th onclick="sortTable(6)">Образование</th>
             <th onclick="sortTable(7)">Должность</th>
+            <th>Причина</th>
             <th>Действия</th>
             <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 
@@ -38,6 +39,8 @@
                 <td th:text="${worker.employDate}"></td>
                 <td th:text="${worker.education}"></td>
                 <td th:text="${worker.position}"></td>
+                <td><p th:each="fired : ${firedList}" th:if="(${fired.getIdentity()}==${worker.id})" th:text="${fired.getReason()}"></p></td>
+
                 <td><a th:href="@{'/restore/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите восстановить сотрудника?')">Восстановить</a></td>
             </a>
         </tr>

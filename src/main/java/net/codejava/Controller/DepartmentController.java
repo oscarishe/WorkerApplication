@@ -48,6 +48,7 @@ public class DepartmentController {
         service.save(department);
         return "redirect:department";
     }
+
     @RequestMapping("/delete_department/{id}")
     public String deleteDepartment(@PathVariable(name = "id") Long id) {
         service.delete(id);
