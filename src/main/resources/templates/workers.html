@@ -3,14 +3,77 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8">
+    <title>Product Manager</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
 </head>
 <body>
-<table>
-    <tr th:each="worker: ${listWorker}">
-        <td th:text="${worker.name}"></td>
-        <td th:text="${worker.surname}"></td>
-        <td th:text="${worker.patronymic}"></td>
-    </tr>
-</table>
+<header>
+    <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
+</header>
+<div align="center">
+    <div sec:authorize="isAuthenticated()">
+        Welcome <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Выйти" />
+    </form>
+
+    <h1>Product Manager</h1>
+    <div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">
+        <a href="new">Создать нового работника</a>
+        <br>
+        <a href="department">Отделы организации</a>
+        <a href="fired_list">Уволенные сотрудники</a>
+    </div>
+
+    <br/><br/>
+    <table border="1" cellpadding="10" id="mainTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">ID</th>
+            <th onclick="sortTable(1)">Имя</th>
+            <th onclick="sortTable(2)">Фамилия</th>
+            <th onclick="sortTable(3)">Отчество</th>
+            <th onclick="sortTable(4)">Дата рождения</th>
+            <th onclick="sortTable(5)">Дата трудоустройства</th>
+            <th onclick="sortTable(6)">Образование</th>
+            <th onclick="sortTable(7)">Должность</th>
+            <th>Действия</th>
+            <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="worker : ${listWorker}">
+
+                <td th:text="${worker.id}"></td>
+                <td th:text="${worker.name}"></td>
+                <td th:text="${worker.surname}"></td>
+                <td th:text="${worker.patronymic}"></td>
+                <td th:text="${worker.getAge()}"></td>
+                <td th:text="${worker.employDate}"></td>
+                <td th:text="${worker.education}"></td>
+                <td th:text="${worker.position}"></td>
+                <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
+                    <!--<a th:href="@{'/edit/' + ${worker.id}}">Редактировать</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите удалить сотрудника?')">Удалить</a>
+                    <a th:href="@{'/fire/' + ${worker.id}}">Уволить сотрудника</a>-->
+                    <a th:href="@{'/profile/' + ${worker.id}}">Профиль сотрудника</a>
+                </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+    <h1>Количество работников - <span th:text="${workerCount}"></span></h1>
+
+</div>
+<script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
 </body>
 </html>

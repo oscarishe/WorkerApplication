@@ -30,12 +30,12 @@ public class WorkerController {
     @Autowired
     private FiredWorkerService fireService;
 
-    @RequestMapping("/")
+    @RequestMapping("/workers")
     public String viewHomePage(Model model) {
         List<Worker> listWorker = workService.listAllActive();
         model.addAttribute("workerCount", workService.getCountOfWorkers());
         model.addAttribute("listWorker", listWorker);
-        return "index";
+        return "workers";
     }
     @RequestMapping("/delete/{id}")
     public String deleteWorker(@PathVariable(name = "id") Long id) {

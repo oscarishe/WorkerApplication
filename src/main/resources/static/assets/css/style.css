@@ -7,3 +7,75 @@ tr:hover {
 #deleteForm {
     display:none;
 }
+header {
+    margin-bottom:50px;
+}
+.header_h {
+    width:100%;
+    margin:auto;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    border-bottom: 2px solid navy;
+    background-image: url("../images/administrator.png");
+    background-position:37% 0%;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+}
+.items_h {
+    width:100%;
+    margin:auto;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 10px;
+}
+
+.workers_nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+.workers {
+    margin-bottom: 300px;
+}
+.workers_nav div {
+    height:100px;
+    width:25%;
+    box-sizing: border-box;
+    text-align:center;
+    vertical-align: bottom;
+}
+header a {
+    text-decoration: none;
+    color:black;
+}
+.department {
+    margin-bottom: 300px;
+}
+.department_nav {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.department_nav div {
+    height:100px;
+    width:25%;
+    box-sizing: border-box;
+    text-align:center;
+    vertical-align: bottom;
+}
+
+.vacancies_nav  {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.vacancies_nav div {
+    height:100px;
+    width:25%;
+    box-sizing: border-box;
+    text-align:center;
+    vertical-align: bottom;
+}
