@@ -1,8 +1,6 @@
 package net.codejava.Controller;
 
-import net.codejava.Model.Department;
-import net.codejava.Model.Fired;
-import net.codejava.Model.Worker;
+import net.codejava.Model.*;
 import net.codejava.Service.DepartmentService;
 import net.codejava.Service.FiredWorkerService;
 import net.codejava.Service.UserService;
@@ -46,6 +44,7 @@ public class WorkerController {
     public String fireWorker(@PathVariable(name = "id") Long id) {
         Worker worker = workService.get(id);
         worker.setActive(false);
+        worker.setStatus(0);
         workService.save(worker);
         Fired firedWorker = new Fired();
         firedWorker.setIdentity(id);
@@ -56,6 +55,7 @@ public class WorkerController {
     public String fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker) {
         Worker worker = workService.get(firedWorker.getIdentity());
         worker.setActive(false);
+        worker.setStatus(0);
         workService.save(worker);
         fireService.save(firedWorker);
         System.out.println("Уволен сотрудник" + firedWorker.getIdentity() + firedWorker.getDate());
@@ -88,9 +88,14 @@ public class WorkerController {
     @RequestMapping("/profile/{id}")
     public ModelAndView showWorkerProfile(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("profile");
+
         Fired firedWorker = new Fired();
         Worker worker = workService.get(id);
+        Vacation vacation  = new Vacation();
+        Sickleave sickleave = new Sickleave();
         Department dep = depService.get(worker.getDepartmentId());
+        mav.addObject("sickleave", sickleave);
+        mav.addObject("vacation",vacation);
         mav.addObject("fired", firedWorker);
         mav.addObject("dep", dep);
         mav.addObject("worker", worker);

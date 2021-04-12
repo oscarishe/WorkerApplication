@@ -4,7 +4,7 @@ th:hover {
 tr:hover {
     background-color:yellow;
 }
-#deleteForm {
+#deleteForm, #vacationForm, #sickleaveForm {
     display:none;
 }
 header {
@@ -78,4 +78,64 @@ header a {
     box-sizing: border-box;
     text-align:center;
     vertical-align: bottom;
+}
+.profile_picture {
+    width:200px;
+    height:300px;
+}
+.main_link {
+    text-decoration: none;
+    color:navy;
+    font-size:1.7em;
+}
+.worker_table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.worker_table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+.worker_table th,
+.worker_table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+.worker_table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.worker_table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.worker_table tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.worker_table td:first-child {
+    font-weight: bold;;
+    color:navy;
+}
+.profile_link {
+    text-decoration: none;
+    background:lawngreen;
+    padding:7px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.worker_button {
+    padding:10px;
+    display:block;
+    background:dodgerblue;
+}
+.worker_buttons {
+    margin-top:35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

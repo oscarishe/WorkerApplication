@@ -16,5 +16,9 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
     @Query("SELECT u FROM Worker u WHERE u.isActive = false")
     public List<Worker> listAllUnactive();
 
+    @Query("select u from Worker u Where u.status=2")
+    public List<Worker> listAllVacated();
 
+    @Query("select u from Worker u Where u.status=3")
+    public List<Worker> lissAllSick();
 }

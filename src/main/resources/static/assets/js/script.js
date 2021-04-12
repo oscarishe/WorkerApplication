@@ -70,3 +70,40 @@ function openDeleteForm() {
         document.getElementById("workerIdField").value = id;
 
 }
+function openVacationForm() {
+    var form = document.getElementById('vacationForm');
+    form.style.display = "block";
+    var id = document.getElementById("workerId").textContent;
+    document.getElementById("workerIdFieldVacation").value = id;
+
+}
+function openSickleaveForm() {
+    var form = document.getElementById('sickleaveForm');
+    form.style.display = "block";
+    var id = document.getElementById("workerId").textContent;
+    document.getElementById("workerIdFieldSickleave").value = id;
+
+}
+$(document).ready(function(){
+
+    $("#search").keyup(function(){
+
+        _this = this;
+
+        $.each($("#mainTable tbody tr"), function() {
+
+            if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1) {
+
+                $(this).hide();
+
+            } else {
+
+                $(this).show();
+
+            }
+
+        });
+
+    });
+
+});

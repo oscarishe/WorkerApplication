@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 <title>Product Manager</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
 </head>
 <body>
 	<header>
@@ -15,25 +16,30 @@
 			<h1 class="items_h">Сотрудники:</h1>
 			<div class="workers_nav">
 				<div>
-					<a href="workers">
+					<a href="workers" class="main_link">
 					<img th:src="@{/assets/images/employee.png}">
 					<br>
 					Список сотрудников предприятия</a>
 				</div>
 				<div>
+					<a href="vacation_list" class="main_link">
 					<img th:src="@{/assets/images/summertime.png}">
 					<br>
 					Сотрудники в отпуске
+					</a>
 				</div>
 				<div>
+					<a href="sick_list" class="main_link">
 					<img th:src="@{/assets/images/fever.png}">
 					<br>
 					Сотрудники на больничном
+					</a>
 				</div>
 				<div>
+					<a href="fired_list" class="main_link">
 					<img th:src="@{/assets/images/fired.png}">
 					<br>
-					<a href="fired_list">Уволенные сотрудники</a>
+					Уволенные сотрудники</a>
 				</div>
 			</div>
 		</div>

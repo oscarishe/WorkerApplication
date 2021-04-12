@@ -25,7 +25,37 @@ public class Worker {
     private String education;
     private String position;
     private boolean isActive;
+    private String picture;
+    private int status;
 
+
+    public int getStatus() {
+        return status;
+    }
+    public String getActualStatus()
+    {
+        if(this.status==0)
+            return "Уволен";
+        if(this.status==1)
+            return "Активен";
+        if(this.status==2)
+            return "В отпуске";
+        if(this.status==3)
+            return "На больничном";
+
+        return null;
+    }
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     public boolean isActive() {
         return isActive;

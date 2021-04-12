@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Product Manager</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 <header>
@@ -21,26 +22,16 @@
         <input type="submit" value="Выйти" />
     </form>
 
-    <h1>Product Manager</h1>
-    <div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">
-        <a href="new">Создать нового работника</a>
-        <br>
-        <a href="department">Отделы организации</a>
-        <a href="fired_list">Уволенные сотрудники</a>
-    </div>
-
+    <input type="text" class="form-control pull-right" id="search" placeholder="Поиск по таблице">
     <br/><br/>
-    <table border="1" cellpadding="10" id="mainTable">
+    <table class="worker_table" id="mainTable">
         <thead>
         <tr>
             <th onclick="sortTable(0)">ID</th>
-            <th onclick="sortTable(1)">Имя</th>
-            <th onclick="sortTable(2)">Фамилия</th>
+            <th onclick="sortTable(1)">Фамилия</th>
+            <th onclick="sortTable(2)">Имя</th>
             <th onclick="sortTable(3)">Отчество</th>
-            <th onclick="sortTable(4)">Дата рождения</th>
-            <th onclick="sortTable(5)">Дата трудоустройства</th>
-            <th onclick="sortTable(6)">Образование</th>
-            <th onclick="sortTable(7)">Должность</th>
+
             <th>Действия</th>
             <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 
@@ -51,26 +42,26 @@
         <tr th:each="worker : ${listWorker}">
 
                 <td th:text="${worker.id}"></td>
-                <td th:text="${worker.name}"></td>
                 <td th:text="${worker.surname}"></td>
+                <td th:text="${worker.name}"></td>
                 <td th:text="${worker.patronymic}"></td>
-                <td th:text="${worker.getAge()}"></td>
-                <td th:text="${worker.employDate}"></td>
-                <td th:text="${worker.education}"></td>
-                <td th:text="${worker.position}"></td>
                 <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
                     <!--<a th:href="@{'/edit/' + ${worker.id}}">Редактировать</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/delete/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите удалить сотрудника?')">Удалить</a>
                     <a th:href="@{'/fire/' + ${worker.id}}">Уволить сотрудника</a>-->
-                    <a th:href="@{'/profile/' + ${worker.id}}">Профиль сотрудника</a>
+                    <a th:href="@{'/profile/' + ${worker.id}}" class="profile_link">Профиль сотрудника</a>
                 </td>
 
         </tr>
 
         </tbody>
     </table>
+    <div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')" class="worker_buttons">
+        <a href="new" class="worker-button">Добавить нового работника</a>
 
+        <br>
+    </div>
     <h1>Количество работников - <span th:text="${workerCount}"></span></h1>
 
 </div>

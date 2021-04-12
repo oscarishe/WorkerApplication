@@ -23,6 +23,7 @@ public class FiredController {
     public String restoreWorker(@PathVariable(name = "id") Long id) {
         Worker worker = workService.get(id);
         worker.setActive(true);
+        worker.setStatus(1);
         workService.save(worker);
         Fired fired = fireService.getByWorkerId(id);
         fireService.delete(fired.getId());

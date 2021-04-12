@@ -20,7 +20,8 @@
             <th onclick="sortTable(1)">Фамилия</th>
             <th onclick="sortTable(2)">Имя</th>
             <th onclick="sortTable(3)">Отчество</th>
-            <th>Причина</th>
+            <th onclick="sortTable(4)">Начало отпуска</th>
+            <th onclick="sortTable(5)">Конец отпуска</th>
             <th>Действия</th>
             <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 
@@ -34,8 +35,8 @@
                 <td th:text="${worker.surname}"></td>
                 <td th:text="${worker.name}"></td>
                 <td th:text="${worker.patronymic}"></td>
-                <td><p th:each="fired : ${firedList}" th:if="(${fired.getIdentity()}==${worker.id})" th:text="${fired.getReason()}"></p></td>
-
+                <td><p th:each="vacation : ${listVacate}" th:if="(${vacation.getIdentity()}==${worker.id})" th:text="${vacation.getStart()}"></p></td>
+                <td><p th:each="vacation : ${listVacate}" th:if="(${vacation.getIdentity()}==${worker.id})" th:text="${vacation.getEnd()}"></p></td>
                 <td><a th:href="@{'/restore/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите восстановить сотрудника?')">Восстановить</a></td>
             </a>
         </tr>
