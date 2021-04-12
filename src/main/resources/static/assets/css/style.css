@@ -139,3 +139,7 @@ header a {
     align-items: center;
     justify-content: center;
 }
+#firedTable tr {
+    background: #FA4848;
+    border-bottom: none;
+}

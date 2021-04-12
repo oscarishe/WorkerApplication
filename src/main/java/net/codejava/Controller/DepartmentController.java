@@ -61,4 +61,11 @@ public class DepartmentController {
         mav.addObject("department", department);
         return mav;
     }
+    @RequestMapping("/department_page/{id}")
+    public ModelAndView showDepartmentProfile(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("department_page");
+        List <Worker> listWorker = workerService.findByDepartmentId(id);
+        mav.addObject("listWorker",listWorker);
+        return mav;
+    }
 }

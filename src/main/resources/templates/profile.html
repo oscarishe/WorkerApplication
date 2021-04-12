@@ -80,7 +80,18 @@
             <tr>
                 <td th:text="${worker.employDate}"></td>
                 <td>Назначен <span th:text="${worker.position}"></span> в отдел "<span th:text="${dep.name}"></span></td>
-
+            </tr>
+            <tr th:each="sick : ${sickleaveList}">
+                <td><span th:text="${sick.start}"></span>- <span th:text="${sick.end}"></span></td>
+                <td>Больничный</td>
+            </tr>
+            <tr th:each="vacation : ${vacationList}">
+                <td><span th:text="${vacation.start}"></span>- <span th:text="${vacation.end}"></span></td>
+                <td>Отпуск</td>
+            </tr>
+            <tr th:each="fire : ${firedList}">
+                <td th:text="${fire.date}"></td>
+                <td>Уволен по причине: <span th:text="${fire.reason}"></span></td>
             </tr>
         </tbody>
     </table>

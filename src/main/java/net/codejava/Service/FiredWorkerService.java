@@ -31,4 +31,7 @@ public class FiredWorkerService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+    public List<Fired> listByWorkerId(Long id) {
+        return repo.ListByWorkerId(id);
+    }
 }

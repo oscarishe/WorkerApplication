@@ -1,10 +1,7 @@
 package net.codejava.Controller;
 
 import net.codejava.Model.*;
-import net.codejava.Service.DepartmentService;
-import net.codejava.Service.FiredWorkerService;
-import net.codejava.Service.UserService;
-import net.codejava.Service.WorkerService;
+import net.codejava.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +24,10 @@ public class WorkerController {
     private DepartmentService depService;
     @Autowired
     private FiredWorkerService fireService;
-
+    @Autowired
+    private VacationService vacationService;
+    @Autowired
+    SickleaveService sickleaveService;
     @RequestMapping("/workers")
     public String viewHomePage(Model model) {
         List<Worker> listWorker = workService.listAllActive();
@@ -94,7 +94,13 @@ public class WorkerController {
         Vacation vacation  = new Vacation();
         Sickleave sickleave = new Sickleave();
         Department dep = depService.get(worker.getDepartmentId());
+        List <Vacation> vacationList = vacationService.listById(id);
+        List <Sickleave> sickleaveList = sickleaveService.listById(id);
+        List <Fired> firedList = fireService.listByWorkerId(id);
+        mav.addObject("vacationList",vacationList);
+        mav.addObject("sickleaveList",sickleaveList);
         mav.addObject("sickleave", sickleave);
+        mav.addObject("firedList", firedList);
         mav.addObject("vacation",vacation);
         mav.addObject("fired", firedWorker);
         mav.addObject("dep", dep);

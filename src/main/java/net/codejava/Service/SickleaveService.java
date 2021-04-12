@@ -29,4 +29,8 @@ public class SickleaveService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public List<Sickleave> listById(Long id) {
+        return repo.listById(id);
+    }
 }

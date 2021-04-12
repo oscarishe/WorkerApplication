@@ -27,4 +27,8 @@ public class VacationService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public List<Vacation> listById(Long id) {
+        return repo.listById(id);
+    }
 }

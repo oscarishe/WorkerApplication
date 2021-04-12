@@ -20,5 +20,8 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
     public List<Worker> listAllVacated();
 
     @Query("select u from Worker u Where u.status=3")
-    public List<Worker> lissAllSick();
+    public List<Worker> listAllSick();
+
+    @Query("SELECT u from Worker u where u.departmentId=?1")
+    public List<Worker> listByDepartment(Long id);
 }

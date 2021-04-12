@@ -25,7 +25,7 @@ public class WorkerService {
         return repo.listAllUnactive();
     }
     public List<Worker> listAllSick() {
-        return repo.lissAllSick();
+        return repo.listAllSick();
     }
     public List<Worker> listAllVacated(){
         return repo.listAllVacated();
@@ -44,5 +44,8 @@ public class WorkerService {
     public int getCountOfWorkers() {
 
         return repo.findAll().size();
+    }
+    public List <Worker> findByDepartmentId(Long id) {
+        return repo.listByDepartment(id);
     }
 }
