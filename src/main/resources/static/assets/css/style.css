@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 th:hover {
     cursor: pointer;
 }
-tr:hover {
-    background-color:yellow;
-}
+
 #deleteForm, #vacationForm, #sickleaveForm {
     display:none;
 }
 header {
-    margin-bottom:50px;
+    margin:0 0 50px 0;
+    background:black;
+    width:100%;
+    color:white;
+    height:70px;
+}
+body {
+    margin:0;
+    background:lightgray;
+    font-family: 'Roboto';
+}
+.header_h a {
+    color:white;
 }
 .header_h {
     width:100%;
@@ -16,11 +28,11 @@ header {
     text-align: center;
     padding-bottom: 15px;
     padding-top: 10px;
-    border-bottom: 2px solid navy;
     background-image: url("../images/administrator.png");
     background-position:37% 0%;
     background-size: 50px 50px;
     background-repeat: no-repeat;
+
 }
 .items_h {
     width:100%;
@@ -142,4 +154,37 @@ header a {
 #firedTable tr {
     background: #FA4848;
     border-bottom: none;
+}
+.worker_form {
+    font-size:1.2em;
+    border:5px solid navy;
+    padding:15px;
+    text-align: center;
+    border-radius:15px;
+    background:white
+}
+.worker_form input {
+    height:25px;
+    border:2px solid navy;
+    border-radius:10px;
+}
+.worker_form input:focus {
+    outline: none;
+    -moz-box-shadow: 0px 0px 15px rgba(0, 170, 255,.5);
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 170, 255,.5);
+    box-shadow: 0px 0px 15px rgba(0, 170, 255,.5);
+    background: lightyellow;
+}
+.worker_form_header:hover {
+    text-decoration: underline;
+}
+.worker_submit {
+    width:120px;
+    height:40px;
+    border-radius:10px;
+    border:none;
+    background:darkblue;
+    color:white;
+    font-size:1.2em;
+
 }

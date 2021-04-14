@@ -27,6 +27,34 @@ public class Worker {
     private boolean isActive;
     private String picture;
     private int status;
+    private String gender;
+    private String number;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
 
 
     public int getStatus() {
