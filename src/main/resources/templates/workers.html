@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Product Manager</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Выйти" />
     </form>
-
+    <h3>Поиск сотрудников:</h3>
     <input type="text" class="form-control pull-right" id="search" placeholder="Поиск по таблице">
     <br/><br/>
     <table class="worker_table" id="mainTable">

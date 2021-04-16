@@ -3,69 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 <header>
     <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
 </header>
+<div align="center" class="profile">
 <h1>Карточка сотрудника</h1>
-<h2 th:text="${worker.getActualStatus()}"></h2>
+<h2 th:text="${worker.getActualStatus()}" id="workerStatus"></h2>
 <img th:src = "${worker.picture}" class="profile_picture">
-<h2>ID:</h2>
-<p><span th:text="${worker.id}" id="workerId"></span></p>
+<h2>ID: <span th:text="${worker.id}" id="workerId">Текст</span></h2>
+
 <h2>ФИО:</h2>
 <p><span th:text="${worker.surname}"></span> <span th:text="${worker.name}"></span> <span th:text="${worker.patronymic}"></span> </p>
 <h2>Отдел:</h2>
-<button onclick="openDeleteForm()">
+    <p><span th:text = "${dep.name}"></span></p>
+    <h2>Дата рождения:</h2>
+    <p><span th:text="${worker.birthdayDate}"></span></p>
+    <h2>Адрес проживания:</h2>
+    <p><span th:text="${worker.address}"></span></p>
+    <h2>Мобильный телефон:</h2>
+    <p><span th:text="${worker.number}"></span></p>
+    <div class="buttons">
+        <a th:href="@{'/edit/' + ${worker.id}}" class="profile_link">Редактировать данные</a><br><br>
+<button onclick="openDeleteForm()" class="delete_button">
     Уволить сотрудника
 </button>
-<button onclick="openVacationForm()">
+<button onclick="openVacationForm()" class="vacation_button">
     Оформить отпуск
 </button>
-<button onclick="openSickleaveForm()">
+<button onclick="openSickleaveForm()" class="sick_button">
     Оформить больничный
 </button>
 
+    </div>
+        <div class="worker_operation">
         <div id="deleteForm">
             <form action="#" th:action="@{/fire}" th:object="${fired}" method="post">
+                <label>ID:<br>
         <input id="workerIdField" th:field ="*{identity}" readonly><br>
+                </label>
         <label> Причина увольнения <br>
         <input type="text" th:field="*{reason}">
         </label>
-        <br>
+        <br><br>
         <input type="submit" value="Уволить сотрудника">
             </form>
         </div>
 
     <div id="vacationForm">
     <form action="#" th:action="@{/vacate}" th:object="${vacation}" method="post">
+        <label>ID:<br>
         <input id="workerIdFieldVacation" th:field ="*{identity}" readonly><br>
+        </label>
         <label>Начало отпуска:<br>
             <input type="date" th:field="*{start}">
-        </label>
+        </label><br>
         <label>Конец отпуска:<br>
             <input type="date" th:field="*{end}">
         </label>
-        <br>
+        <br><br>
         <input type="submit" value="Оформить отпуск">
     </form>
     </div>
     <div id="sickleaveForm">
     <form action="#" th:action="@{/sick}" th:object="${sickleave}" method="post">
+        <label>ID:<br>
         <input id="workerIdFieldSickleave" th:field ="*{identity}" readonly><br>
+        </label>
         <label>Начало больничного:<br>
             <input type="date" th:field="*{start}">
-        </label>
+        </label><br>
         <label>Конец больничного:<br>
             <input type="date" th:field="*{end}">
         </label>
-        <br>
+        <br><br>
         <input type="submit" value="Оформить больничный">
     </form>
     </div>
-
-<div class ="history">
-    <table>
+    </div>
+</div>
+<h1 align="center">История</h1>
+<div class ="history" align="center">
+    <table class="history_table" cellspacing="0">
         <thead>
             <tr>
             <th>Дата</th>
@@ -79,7 +101,7 @@
             </tr>
             <tr>
                 <td th:text="${worker.employDate}"></td>
-                <td>Назначен <span th:text="${worker.position}"></span> в отдел "<span th:text="${dep.name}"></span></td>
+                <td>Назначен на должность "<span th:text="${worker.position}"></span>" в отдел "<span th:text="${dep.name}"></span>"</td>
             </tr>
             <tr th:each="sick : ${sickleaveList}">
                 <td><span th:text="${sick.start}"></span>- <span th:text="${sick.end}"></span></td>
@@ -96,6 +118,7 @@
         </tbody>
     </table>
 </div>
+
 <script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
 </body>
 </html>

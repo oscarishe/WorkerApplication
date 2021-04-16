@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <title>Отделы организации</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
 </head>
 <body>
 <header>
     <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
 </header>
+    <h1 align="center">Отделы организации:</h1>
     <a href="new_department">Создать новый отдел</a>
     <a href="/">Вернуться на главную</a>
     <table border="1" cellpadding="10" id="mainTable">
@@ -24,5 +26,16 @@
             </td>
         </tr>
     </table>
+    <div class="department_containter">
+        <div th:each="department: ${listDep}" class = department_element>
+            <h2  th:text="${department.name}">Кафедра экономической информатики</h2>
+            <h3>ID:<span th:text="${department.id}"></span></h3>
+            <h3>Укомплектованность сотрудниками:</h3>
+            <p><span th:text="${department.count}"></span> из <span th:text="${department.slots}"></span></p>
+            <a>Страница отдела</a>
+
+        </div>
+
+    </div>
 </body>
 </html>

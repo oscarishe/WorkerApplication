@@ -1,63 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<meta charset="utf-8">
-<title>Редактирование данных о работнике</title>
+	<title>Регистрация нового работника</title>
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
 </head>
 <body>
 <header>
 	<h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
 </header>
-	<div align="center">
-		<h1>Введите новые данные</h1>
-		<br/>
-		<form action="#" th:action="@{/save}" th:object="${worker}" method="post">
-			<table border="0" cellpadding="10">
-				<tr>
-					<td>ID</td>
-					<td><input type="text" th:field="*{id}" readonly="readonly" /></td>
-				</tr>			
-				<tr>
-					<td>Имя</td>
-					<td><input type="text" th:field="*{name}" /></td>
-				</tr>
-				<tr>
-					<td>Фамилия</td>
-					<td><input type="text" th:field="*{surname}" /></td>
-				</tr>				
-				<tr>
-					<td>Отчество</td>
-					<td><input type="text" th:field="*{patronymic}" /></td>
-				</tr>
-				<tr>
-					<td>Дата трудоустройства</td>
-					<td><input type="date" th:value="*{employDate}" th:field="*{employDate}"/></td>
-				</tr>
-				<tr>
-					<td>Дата рождения</td>
-					<td><input type="date" th:value="*{birthdayDate}" th:field="*{birthdayDate}"/></td>
-				</tr>
+<div align="center">
+	<h1 class="worker_form_header">Регистрация нового работника</h1>
+	<br/>
+	<form action="#" th:action="@{/save}" th:object="${worker}" method="post">
+		<table border="0" cellpadding="10" class="worker_form">
+			<tr>
+				<td>Фамилия:</td>
+				<td>Имя</td>
+				<td>Отчество:</td>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{surname}" required /></td>
+				<td><input type="text" th:field="*{name}" required /></td>
 
-				<tr>
-					<td>Образование</td>
-					<td><input type="text" th:field="*{education}" /></td>
-				</tr>
-				<tr>
-					<td>Должность</td>
-					<td><input type="text" th:field="*{position}" /></td>
-				</tr>
-				<tr>
-					<td>
-						<select th:field="*{departmentId}">
-							<option th:each="department : ${listDep}" th:value="${department.id}"><span th:text="${department.name}"></span></option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
-				</tr>
-			</table>
-		</form>
-	</div>
+				<td><input type="text" th:field="*{patronymic}" required /></td>
+			</tr>
+			<tr>
+				<td>Дата рождения:</td>
+				<td></td>
+				<td>Дата трудоустройства:</td>
+
+			</tr>
+			<tr>
+				<td><input type="date" th:field="*{birthdayDate}" required /></td>
+				<td></td>
+				<td><input type="date" th:field="*{employDate}" required /></td>
+			</tr>
+
+			<tr>
+				<td>Образование</td>
+				<td>Отдел</td>
+				<td>Должность</td>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{education}" required /></td>
+				<td><select th:field="*{departmentId}">
+					<option th:each="department : ${listDep}" th:value="${department.id}"><span th:text="${department.name}"></span></option>
+				</select>
+				</td>
+				<td><input type="text" th:field="*{position}" required /></td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td>Пол</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<select th:field="*{gender}">
+						<option th:text="Мужской" th:value="Мужской">Мужской</option>
+						<option th:text="Женский" th:value="Женский">Женский</option>
+					</select>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Домашний адрес:</td>
+				<td></td>
+				<td>Номер телефона:</td>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{address}"></td>
+				<td></td>
+				<td><input type="tel" th:field="*{number}" placeholder="+375(__)___-__-__"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan><button type="submit" class="worker_submit">Добавить</button></td>
+			</tr>
+		</table>
+	</form>
+</div>
 </body>
 </html>

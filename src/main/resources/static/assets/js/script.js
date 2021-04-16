@@ -107,3 +107,19 @@ $(document).ready(function(){
     });
 
 });
+
+$(window).on('load', function() {
+    var status = document.getElementById("workerStatus");
+
+    console.log(status);
+    if(status.textContent =="Активен") {
+        console.log("Активный статус");
+        status.style.background = "#7FFF7F";
+    }
+    if(status.textContent == "Уволен")
+        status.style.background = "#AA0000";
+    if(status.textContent == "В отпуске")
+        status.style.background = "#00b8ff";
+    if(status.textContent == "На больничном")
+        status.style.background = "#ffe700";
+})

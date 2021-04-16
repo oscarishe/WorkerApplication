@@ -16,7 +16,7 @@ header {
 }
 body {
     margin:0;
-    background:lightgray;
+    background:#F2F2F2;
     font-family: 'Roboto';
 }
 .header_h a {
@@ -99,6 +99,9 @@ header a {
     text-decoration: none;
     color:navy;
     font-size:1.7em;
+}
+.main_link:hover {
+    text-decoration: underline solid orange;
 }
 .worker_table {
     border-collapse: collapse;
@@ -187,4 +190,86 @@ header a {
     color:white;
     font-size:1.2em;
 
+}
+.profile {
+    border:5px solid navy;
+    width:700px;
+    margin:auto;
+    margin-bottom:50px;
+}
+.history_table td:first-child {
+    text-align: center;
+}
+#workerStatus
+{
+    width:150px;
+}
+.profile p {
+    font-size:1.3em;
+}
+.buttons a {
+    margin-bottom:50px;
+}
+.buttons button {
+    width:200px;
+    height:40px;
+    border:none;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+.delete_button {
+    background: #AA0000;
+    color:white;
+}
+.sick_button {
+    background:#ffe700;
+}
+.vacation_button {
+    background:#00b8ff;
+}
+.history {
+    width:700px;
+    border:5px solid navy;
+    margin: auto;
+}
+.history_table {
+    width:100%;
+}
+.history_table thead tr {
+    background: #009879;
+    color:white;
+    height:35px;
+}
+.history_table tbody td {
+    border-bottom: 1px solid black;
+    padding:10px;
+}
+.history_table td:first-child {
+    border-right: 1px solid black;
+    width:150px;
+}
+.worker_operation {
+    width:100%;
+    margin:auto;
+}
+.worker_operation div {
+    border:3px solid navy;
+    width:30%;
+    border-radius: 13px;
+}
+input:read-only {
+    width:25px;
+    opacity: 0.3;
+}
+.department_containter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.department_element {
+    border:3px solid black;
+    text-align: center;
+    width:30%;
+    margin:10px 10px 15px 10px;
 }
