@@ -12,10 +12,20 @@
 	<h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
 </header>
 <div align="center">
-	<h1 class="worker_form_header">Регистрация нового работника</h1>
+	<h1 class="worker_form_header">Редактирование данных</h1>
 	<br/>
 	<form action="#" th:action="@{/save}" th:object="${worker}" method="post">
 		<table border="0" cellpadding="10" class="worker_form">
+			<tr>
+				<td></td>
+				<td>ID:</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" th:field="*{id}" readonly /></td>
+				<td></td>
+			</tr>
 			<tr>
 				<td>Фамилия:</td>
 				<td>Имя</td>

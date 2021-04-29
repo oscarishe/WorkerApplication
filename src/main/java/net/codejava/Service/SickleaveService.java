@@ -33,4 +33,11 @@ public class SickleaveService {
     public List<Sickleave> listById(Long id) {
         return repo.listById(id);
     }
+
+    public List<Sickleave> listActive() {
+        return repo.listActive();
+    }
+    public List<Sickleave> listArchive() {
+        return repo.listArchive();
+    }
 }

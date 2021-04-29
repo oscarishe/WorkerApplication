@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -35,10 +36,23 @@ public class SickleaveController {
 
     @RequestMapping("/sick_list")
     public String getSickList(Model model) {
+
         List <Worker> listWorker = workerService.listAllSick();
-        List<Sickleave> sickList = sickleaveService.listAll();
+        List<Sickleave> sickList = sickleaveService.listActive();
+        LocalDate today = LocalDate.now();
+//        for(int i=0;i<sickList.size();i++) {
+//            if(sickList.get(i).getEnd().isBefore(today)) {
+//                for (int j = 0; j < listWorker.size(); j++)
+//                    if (listWorker.get(j).getId() == sickList.get(i).getIdentity()) {
+//                        listWorker.get(j).setStatus(1);
+//                        workerService.save(listWorker.get(j));
+//                    }
+//            }
+//        }
+        List <Sickleave> archiveList = sickleaveService.listArchive();
         model.addAttribute("listWorker", listWorker);
         model.addAttribute("sickList",sickList);
+        model.addAttribute("archiveList", archiveList);
         return "sick_list";
     }
 }

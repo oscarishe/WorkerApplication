@@ -77,7 +77,9 @@ header a {
     text-align:center;
     vertical-align: bottom;
 }
-
+.vacancies {
+    margin-bottom: 300px;
+}
 .vacancies_nav  {
     display:flex;
     flex-wrap: wrap;
@@ -91,6 +93,20 @@ header a {
     text-align:center;
     vertical-align: bottom;
 }
+.documents_nav  {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.documents_nav div {
+    height:100px;
+    width:25%;
+    box-sizing: border-box;
+    text-align:center;
+    vertical-align: bottom;
+}
+.doc
 .profile_picture {
     width:200px;
     height:300px;
@@ -272,4 +288,24 @@ input:read-only {
     text-align: center;
     width:30%;
     margin:10px 10px 15px 10px;
+}
+.document_div {
+    width:700px;
+    height:90px;
+    font-size:25px;
+    background:white;
+}
+.document_div span {
+    vertical-align: baseline;
+}
+.document_div > span {
+    line-height: 90px;
+    vertical-align: middle;
+}
+.document_div > img {
+    line-height: 90px;
+    vertical-align: middle;
+}
+.document_div a {
+    display:inline;
 }

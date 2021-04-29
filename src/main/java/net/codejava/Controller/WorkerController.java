@@ -1,5 +1,6 @@
 package net.codejava.Controller;
 
+import net.codejava.Document.DocumentCreator;
 import net.codejava.Model.*;
 import net.codejava.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -29,10 +31,12 @@ public class WorkerController {
     @Autowired
     SickleaveService sickleaveService;
     @RequestMapping("/workers")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model) throws IOException {
+        DocumentCreator doc = new DocumentCreator();
         List<Worker> listWorker = workService.listAllActive();
         model.addAttribute("workerCount", workService.getCountOfWorkers());
         model.addAttribute("listWorker", listWorker);
+        doc.createDocument();
         return "workers";
     }
     @RequestMapping("/delete/{id}")
@@ -86,7 +90,7 @@ public class WorkerController {
         return mav;
     }
     @RequestMapping("/profile/{id}")
-    public ModelAndView showWorkerProfile(@PathVariable(name = "id") Long id) {
+    public ModelAndView showWorkerProfile(@PathVariable(name = "id") Long id) throws IOException {
         ModelAndView mav = new ModelAndView("profile");
 
         Fired firedWorker = new Fired();
@@ -105,6 +109,8 @@ public class WorkerController {
         mav.addObject("fired", firedWorker);
         mav.addObject("dep", dep);
         mav.addObject("worker", worker);
+        DocumentCreator doc = new DocumentCreator();
+        //doc.updateDocument("prikaz_priem_na_rabotu.docx","prikaz.docx",worker);
         return mav;
     }
     @RequestMapping("/fired_list")
