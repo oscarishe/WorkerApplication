@@ -31,4 +31,10 @@ public class VacationService {
     public List<Vacation> listById(Long id) {
         return repo.listById(id);
     }
+    public List<Vacation> listActive() {
+        return repo.listActive();
+    }
+    public List<Vacation> listArchive() {
+        return repo.listArchive();
+    }
 }

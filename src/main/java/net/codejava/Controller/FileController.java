@@ -1,8 +1,12 @@
 package net.codejava.Controller;
 
+import net.codejava.Model.Document;
+import net.codejava.Service.DocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class FileController {
+    @Autowired
+    private DocumentService service;
+
     @RequestMapping("/files/{fileName}")
     @ResponseBody
     public void downloadFile(@PathVariable("fileName") String fileName, HttpServletResponse response) {
@@ -43,5 +51,12 @@ public class FileController {
             e.printStackTrace();
 
         }
+    }
+
+    @RequestMapping("/documents")
+    public String documentsPage(Model model) {
+        List<Document> list = service.listAll();
+        model.addAttribute("list",list);
+        return "documents";
     }
 }

@@ -2,12 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="utf-8">
-    <title>Страница отдела</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
+<header>
+    <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
+</header>
+<div align="center">
+    <h1 th:text="${department.name}"></h1>
+    <h2>Заведующий:</h2>
+    <h2 th:text="${chief.getFullname()}"></h2>
+    <h2>Список сотрудников:</h2>
 <table class="worker_table" id="mainTable">
     <thead>
     <tr>
@@ -41,5 +49,9 @@
 
     </tbody>
 </table>
+    <h3>Укомплектованность сотрудниками:</h3>
+    <p><span th:text="${department.count}"></span> из <span th:text="${department.slots}"></span></p>
+    <a th:href="@{'/edit_department/' + ${department.id}}">Редактировать</a>
+</div>
 </body>
 </html>

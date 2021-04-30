@@ -12,7 +12,7 @@
 </header>
 <div align="center">
 
-    <br/><br/>
+    <h1>Сотрудники в отпуске</h1>
     <table id="mainTable" class="worker_table">
         <thead>
         <tr>
@@ -22,28 +22,57 @@
             <th onclick="sortTable(3)">Отчество</th>
             <th onclick="sortTable(4)">Начало отпуска</th>
             <th onclick="sortTable(5)">Конец отпуска</th>
-            <th>Действия</th>
+
             <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="worker : ${listWorker}">
-            <a th:href="@{'/profile/' + ${worker.id}}">
-                <td th:text="${worker.id}"></td>
-                <td th:text="${worker.surname}"></td>
-                <td th:text="${worker.name}"></td>
-                <td th:text="${worker.patronymic}"></td>
-                <td><p th:each="vacation : ${listVacate}" th:if="(${vacation.getIdentity()}==${worker.id})" th:text="${vacation.getStart()}"></p></td>
-                <td><p th:each="vacation : ${listVacate}" th:if="(${vacation.getIdentity()}==${worker.id})" th:text="${vacation.getEnd()}"></p></td>
-                <td><a th:href="@{'/restore/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите восстановить сотрудника?')">Восстановить</a></td>
-            </a>
+        <tr th:each="vacate : ${listVacate}">
+
+            <td><p th:each="worker : ${listWorker}" th:if="(${vacate.getIdentity()}==${worker.id})" th:text="${worker.id}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${vacate.getIdentity()}==${worker.id})" th:text="${worker.surname}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${vacate.getIdentity()}==${worker.id})" th:text="${worker.name}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${vacate.getIdentity()}==${worker.id})" th:text="${worker.patronymic}"></p></td>
+            <td><p th:text="${vacate.start}"></p></td>
+            <td><p th:text="${vacate.end}"></p></td>
+
         </tr>
 
         </tbody>
     </table>
+    <h1>История отпусков</h1>
+    <table id="mainTable" class="worker_table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">ID</th>
+            <th onclick="sortTable(1)">Начало отпуска</th>
+            <th onclick="sortTable(2)">Конец отпуска</th>
+            <th onclick="sortTable(3)">Фамилия</th>
+            <th onclick="sortTable(4)">Имя</th>
+            <th onclick="sortTable(5)">Отчество</th>
 
+
+            <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="archive : ${listArchive}">
+            <td><p th:text="${archive.id}"></p></td>
+            <td><p th:text="${archive.start}"></p></td>
+            <td><p th:text="${archive.end}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${archive.getIdentity()}==${worker.id})" th:text="${worker.surname}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${archive.getIdentity()}==${worker.id})" th:text="${worker.name}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${archive.getIdentity()}==${worker.id})" th:text="${worker.patronymic}"></p></td>
+
+
+        </tr>
+
+        </tbody>
+    </table>
 
 </div>
 <script type="text/javascript" th:src="@{/assets/js/script.js}"></script>

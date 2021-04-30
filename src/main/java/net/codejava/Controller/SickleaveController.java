@@ -37,8 +37,8 @@ public class SickleaveController {
     @RequestMapping("/sick_list")
     public String getSickList(Model model) {
 
-        List <Worker> listWorker = workerService.listAllSick();
-        List<Sickleave> sickList = sickleaveService.listActive();
+        List <Worker> listWorker = workerService.listAll();
+        List <Sickleave> sickList = sickleaveService.listActive();
         LocalDate today = LocalDate.now();
 //        for(int i=0;i<sickList.size();i++) {
 //            if(sickList.get(i).getEnd().isBefore(today)) {

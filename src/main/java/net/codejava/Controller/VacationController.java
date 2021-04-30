@@ -30,8 +30,10 @@ public class VacationController {
         }
     @RequestMapping("/vacation_list")
     public String getVacationList(Model model) {
-        List<Worker> listWorker = workerService.listAllVacated();
-        List<Vacation> listVacate = service.listAll();
+        List<Worker> listWorker = workerService.listAll();
+        List<Vacation> listVacate = service.listActive();
+        List<Vacation> listArchive = service.listArchive();
+        model.addAttribute("listArchive", listArchive);
         model.addAttribute("listWorker", listWorker);
         model.addAttribute("listVacate", listVacate);
         return "vacation_list";

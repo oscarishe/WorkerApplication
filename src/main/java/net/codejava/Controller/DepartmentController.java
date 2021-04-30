@@ -41,8 +41,12 @@ public class DepartmentController {
     public String showNewDepartmentForm(Model model) {
         Department department = new Department();
         model.addAttribute("department", department);
-
         return "new_department";
+    }
+    @RequestMapping(value ="/setChief", method = RequestMethod.POST)
+    public String setChief(@ModelAttribute("department") Department department) {
+        service.save(department);
+        return "redirect:department";
     }
     @RequestMapping(value = "/saveDepartment", method = RequestMethod.POST)
     public String saveDepartment(@ModelAttribute("department") Department department) {
@@ -58,19 +62,24 @@ public class DepartmentController {
     @RequestMapping("/edit_department/{id}")
     public ModelAndView showEditDepartmentForm(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit_department");
+        List <Worker> listWorker = workerService.findByDepartmentId(id);
         Department department = service.get(id);
+        mav.addObject("listWorker", listWorker);
         mav.addObject("department", department);
         return mav;
     }
     @RequestMapping("/department_page/{id}")
     public ModelAndView showDepartmentProfile(@PathVariable(name = "id") Long id) {
+
         ModelAndView mav = new ModelAndView("department_page");
+        Department department = service.get(id);
+        Worker chief = workerService.get(department.getChief());
         List <Worker> listWorker = workerService.findByDepartmentId(id);
+        department.setCount(listWorker.size());
+        mav.addObject("chief", chief);
+        mav.addObject("department",department);
         mav.addObject("listWorker",listWorker);
         return mav;
     }
-    @RequestMapping("/documents")
-    public String documentsPage() {
-        return "documents";
-    }
+
 }

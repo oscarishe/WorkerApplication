@@ -19,6 +19,13 @@
             <img th:src="@{/assets/images/document.png}"><span>Шаблон заявления о приёме на работу</span>
         </div>
         </a>
+        <div th:each="document: ${list}">
+            <a th:href="@{'/files/' + ${document.file}}">
+                <div class="document_div">
+                    <img th:src="@{/assets/images/document.png}"><span th:text="${document.name}"> </span>
+                </div>
+            </a>
+        </div>
     </div>
 </body>
 </html>

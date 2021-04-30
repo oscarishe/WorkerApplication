@@ -56,7 +56,9 @@ public class Worker {
     }
 
 
-
+    public String getFullname() {
+        return this.surname + " " + this.name + " " + this.patronymic;
+    }
     public int getStatus() {
         return status;
     }

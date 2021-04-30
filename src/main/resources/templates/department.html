@@ -32,7 +32,7 @@
             <h3>ID:<span th:text="${department.id}"></span></h3>
             <h3>Укомплектованность сотрудниками:</h3>
             <p><span th:text="${department.count}"></span> из <span th:text="${department.slots}"></span></p>
-            <a>Страница отдела</a>
+            <a th:href="@{'/department_page/' + ${department.id}}">Страница отдела</a>
 
         </div>
 

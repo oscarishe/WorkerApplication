@@ -294,6 +294,7 @@ input:read-only {
     height:90px;
     font-size:25px;
     background:white;
+    margin-bottom:30px;
 }
 .document_div span {
     vertical-align: baseline;

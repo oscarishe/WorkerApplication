@@ -22,53 +22,53 @@
             <th onclick="sortTable(3)">Отчество</th>
             <th onclick="sortTable(4)">Начало больничного</th>
             <th onclick="sortTable(5)">Конец больничного</th>
-            <th>Действия</th>
+
             <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="worker : ${listWorker}">
-            <a th:href="@{'/profile/' + ${worker.id}}">
-                <td th:text="${worker.id}"></td>
-                <td th:text="${worker.surname}"></td>
-                <td th:text="${worker.name}"></td>
-                <td th:text="${worker.patronymic}"></td>
-                <td><p th:each="sick : ${sickList}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${sick.getStart()}"></p></td>
-                <td><p th:each="sick : ${sickList}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${sick.getEnd()}"></p></td>
-                <td><a th:href="@{'/restore/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите восстановить сотрудника?')">Восстановить</a></td>
-            </a>
+        <tr th:each="sick : ${sickList}">
+
+            <td><p th:each="worker : ${listWorker}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${worker.id}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${worker.surname}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${worker.name}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${worker.patronymic}"></p></td>
+            <td><p th:text="${sick.start}"></p></td>
+            <td><p th:text="${sick.end}"></p></td>
+
         </tr>
 
         </tbody>
     </table>
+    <h1>История больничных</h1>
     <table id="mainTable" class="worker_table">
         <thead>
         <tr>
             <th onclick="sortTable(0)">ID</th>
-            <th onclick="sortTable(1)">Фамилия</th>
-            <th onclick="sortTable(2)">Имя</th>
-            <th onclick="sortTable(3)">Отчество</th>
-            <th onclick="sortTable(4)">Начало больничного</th>
-            <th onclick="sortTable(5)">Конец больничного</th>
-            <th>Действия</th>
+            <th onclick="sortTable(1)">Начало больничного</th>
+            <th onclick="sortTable(2)">Конец больничного</th>
+            <th onclick="sortTable(3)">Фамилия</th>
+            <th onclick="sortTable(4)">Имя</th>
+            <th onclick="sortTable(5)">Отчество</th>
+
+
             <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
 
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="worker : ${listWorker}">
-            <a th:href="@{'/profile/' + ${worker.id}}">
-                <td th:text="${worker.id}"></td>
-                <td th:text="${worker.surname}"></td>
-                <td th:text="${worker.name}"></td>
-                <td th:text="${worker.patronymic}"></td>
-                <td><p th:each="sick : ${sickList}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${sick.getStart()}"></p></td>
-                <td><p th:each="sick : ${sickList}" th:if="(${sick.getIdentity()}==${worker.id})" th:text="${sick.getEnd()}"></p></td>
-                <td><a th:href="@{'/restore/' + ${worker.id}}" onclick="return confirm('Вы уверены в том, что хотите восстановить сотрудника?')">Восстановить</a></td>
-            </a>
+        <tr th:each="archive : ${archiveList}">
+                <td><p th:text="${archive.id}"></p></td>
+                <td><p th:text="${archive.start}"></p></td>
+                <td><p th:text="${archive.end}"></p></td>
+                <td><p th:each="worker : ${listWorker}" th:if="(${archive.getIdentity()}==${worker.id})" th:text="${worker.surname}"></p></td>
+                <td><p th:each="worker : ${listWorker}" th:if="(${archive.getIdentity()}==${worker.id})" th:text="${worker.name}"></p></td>
+                <td><p th:each="worker : ${listWorker}" th:if="(${archive.getIdentity()}==${worker.id})" th:text="${worker.patronymic}"></p></td>
+
+
         </tr>
 
         </tbody>

@@ -10,8 +10,17 @@ public class Department {
     private Long id;
     private String name;
     private int slots;
-
     private int count;
+    private Long chief;
+
+    public Long getChief() {
+        return chief;
+    }
+
+    public void setChief(Long chief) {
+        this.chief = chief;
+    }
+
     public String getName() {
         return name;
     }
