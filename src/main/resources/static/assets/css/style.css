@@ -77,10 +77,10 @@ header a {
     text-align:center;
     vertical-align: bottom;
 }
-.vacancies {
+.vacancies, .documents {
     margin-bottom: 300px;
 }
-.vacancies_nav  {
+.vacancies_nav   {
     display:flex;
     flex-wrap: wrap;
     align-items: center;
@@ -93,20 +93,20 @@ header a {
     text-align:center;
     vertical-align: bottom;
 }
-.documents_nav  {
+.documents_nav, .stats_nav  {
     display:flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
-.documents_nav div {
+.documents_nav div, .stats_nav div {
     height:100px;
     width:25%;
     box-sizing: border-box;
     text-align:center;
     vertical-align: bottom;
 }
-.doc
+
 .profile_picture {
     width:200px;
     height:300px;

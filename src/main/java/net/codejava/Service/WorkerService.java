@@ -45,6 +45,12 @@ public class WorkerService {
 
         return repo.findAll().size();
     }
+    public int getCountByGender(String gender) {
+        return repo.getCountByGender(gender);
+    }
+    public int getCountByDepartment(Long id) {
+        return repo.getCountByDepartment(id);
+    }
     public List <Worker> findByDepartmentId(Long id) {
         return repo.listByDepartment(id);
     }

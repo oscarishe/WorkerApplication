@@ -24,4 +24,8 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
 
     @Query("SELECT u from Worker u where u.departmentId=?1")
     public List<Worker> listByDepartment(Long id);
+    @Query("SELECT count(u) from Worker u where u.departmentId=?1")
+    public int getCountByDepartment(Long id);
+    @Query("select count(u) from Worker u where u.gender=:gender")
+    public int getCountByGender(String gender);
 }
