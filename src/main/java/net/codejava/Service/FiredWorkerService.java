@@ -34,4 +34,7 @@ public class FiredWorkerService {
     public List<Fired> listByWorkerId(Long id) {
         return repo.ListByWorkerId(id);
     }
+    public int getFiredByYear(int year) {
+        return repo.getYearFired(year);
+    }
 }

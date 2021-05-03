@@ -310,3 +310,39 @@ input:read-only {
 .document_div a {
     display:inline;
 }
+.years_table td  {
+    border-bottom:3px solid black;
+    text-align: center;
+    padding:10px;
+    font-size:1.3em;
+    font-weight: bolder;
+    background: white;
+}
+.years_table td:first-child {
+    border-right:3px solid black;
+    background:#00b8ff;
+    color:white;
+}
+.years_table tr:first-child td:not(:first-child) {
+    background: #00b8ff;
+    font-weight: bold;
+    color:white;
+    font-size:1.3em;
+}
+.years_table tr:first-child td:last-child {
+    border-left: 3px solid black;
+    background:#00b8ff;
+    color:white
+}
+.years_table td:last-child {
+    border-left: 3px solid black;
+    background:#00b8ff;
+    color:white
+}
+.years_table tr:last-child td {
+    border:none;
+    background: none;
+}
+.years_table tr:last-child td:last-child {
+    color:green;
+}

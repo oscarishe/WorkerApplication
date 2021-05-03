@@ -28,4 +28,6 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
     public int getCountByDepartment(Long id);
     @Query("select count(u) from Worker u where u.gender=:gender")
     public int getCountByGender(String gender);
+    @Query("select count(u) from Worker u where year(u.employDate)=?1")
+    public  int getEmployByYear(int year);
 }

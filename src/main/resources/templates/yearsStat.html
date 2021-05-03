@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <title>Product Manager</title>
+    <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+</head>
+<body>
+<header>
+    <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
+</header>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <div align="center">
+    <h1>Изменение численности сотрудников за последние 10 лет</h1>
+    <table class="years_table" cellspacing="0">
+        <tr>
+            <td>Календарный год</td>
+            <td th:each="element : ${yearEmploy}" th:text="${element.key}"></td>
+            <td>Итого:</td>
+        </tr>
+        <tr>
+            <td>Принято сотрудников</td>
+            <td th:each="element : ${yearEmploy}" th:text="${element.value}"></td>
+            <td th:text="${totalEmploy}"> </td>
+        </tr>
+        <tr>
+            <td>Уволено сотрудников</td>
+            <td th:each="element : ${yearFired}" th:text="${element.value}"></td>
+            <td th:text="${totalFired}"> </td>
+        </tr>
+        <tr id="total">
+            <td></td>
+            <td th:each="element : ${yearFired}"></td>
+            <td th:text="${total}"></td>
+        </tr>
+    </table>
+        <figure class="highcharts-figure" style="width:50%">
+            <div id="container"></div>
+            <p class="highcharts-description">
+
+            </p>
+        </figure>
+    </div>
+<script th:inline="javascript">
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Изменение численности персонала'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [[${yearFired.keySet()}]],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Кол-во сотрудников'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Принято',
+            data: [[${yearEmploy.values()}]]
+
+        }, {
+            name: 'Уволено',
+            data: [[${yearFired.values()}]]
+
+        }]
+    });
+</script>
+</body>
+</html>

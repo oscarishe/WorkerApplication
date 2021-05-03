@@ -42,4 +42,20 @@ public class StatsController {
         return "employeeMoves";
 
     }
+    @GetMapping("/yearsStat")
+    public String yearsStats(Model model) {
+
+        Map<String, Integer> yearEmploy = new LinkedHashMap<>();
+        Map<String, Integer> yearFired = new LinkedHashMap<>();
+        for(int i=2010;i<=2021;i++) {
+                yearFired.put(String.valueOf(i), firedService.getFiredByYear(i));
+                yearEmploy.put(String.valueOf(i), workerService.getEmployByYear(i));
+        }
+        model.addAttribute("totalEmploy", yearEmploy.values().stream().reduce(0,Integer::sum));
+        model.addAttribute("totalFired", yearFired.values().stream().reduce(0,Integer::sum));
+        model.addAttribute("total", yearEmploy.values().stream().reduce(0,Integer::sum)-yearFired.values().stream().reduce(0,Integer::sum));
+        model.addAttribute("yearEmploy",yearEmploy);
+        model.addAttribute("yearFired",yearFired);
+        return "yearsStat";
+    }
 }

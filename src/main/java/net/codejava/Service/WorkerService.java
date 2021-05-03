@@ -54,4 +54,7 @@ public class WorkerService {
     public List <Worker> findByDepartmentId(Long id) {
         return repo.listByDepartment(id);
     }
+    public int getEmployByYear(int year) {
+        return repo.getEmployByYear(year);
+    }
 }

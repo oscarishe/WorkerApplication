@@ -14,4 +14,7 @@ public interface FiredWorkerRepository extends JpaRepository<Fired, Long> {
 
         @Query("select  u from Fired u where u.identity = ?1")
         public List<Fired> ListByWorkerId(Long id);
+
+        @Query(value = "select count(u) from Fired u where year(u.date) = ?1")
+        public int getYearFired(int year);
 }

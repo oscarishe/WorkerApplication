@@ -15,6 +15,7 @@
     <h1 th:text="${department.name}"></h1>
     <h2>Заведующий:</h2>
     <h2 th:text="${chief.getFullname()}"></h2>
+    <img th:src = "${chief.picture}" class="profile_picture">
     <h2>Список сотрудников:</h2>
 <table class="worker_table" id="mainTable">
     <thead>
