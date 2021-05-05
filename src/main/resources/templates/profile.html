@@ -28,6 +28,7 @@
     <p><span th:text="${worker.number}"></span></p>
     <div class="buttons">
         <a th:href="@{'/edit/' + ${worker.id}}" class="profile_link">Редактировать данные</a><br><br>
+        <a th:href="@{'/employ_order/' + ${worker.id}}" class="profile_link">Создать приказ </a><br><br>
 <button onclick="openDeleteForm()" class="delete_button">
     Уволить сотрудника
 </button>
@@ -37,6 +38,7 @@
 <button onclick="openSickleaveForm()" class="sick_button">
     Оформить больничный
 </button>
+        <br>
 
     </div>
         <div class="worker_operation">

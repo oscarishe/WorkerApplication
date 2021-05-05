@@ -6,12 +6,12 @@ import net.codejava.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,7 +36,6 @@ public class WorkerController {
         List<Worker> listWorker = workService.listAllActive();
         model.addAttribute("workerCount", workService.getCountOfWorkers());
         model.addAttribute("listWorker", listWorker);
-        doc.createDocument();
         return "workers";
     }
     @RequestMapping("/delete/{id}")
@@ -56,13 +55,33 @@ public class WorkerController {
         return "redirect:/";
     }
     @RequestMapping(value = "/fire", method = RequestMethod.POST)
-    public String fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker) {
+    public String fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker, HttpServletResponse response) throws IOException {
         Worker worker = workService.get(firedWorker.getIdentity());
+        Department department = depService.get(worker.getDepartmentId());
         worker.setActive(false);
         worker.setStatus(0);
         workService.save(worker);
         fireService.save(firedWorker);
-        System.out.println("Уволен сотрудник" + firedWorker.getIdentity() + firedWorker.getDate());
+        DocumentCreator doc = new DocumentCreator();
+        doc.createFireOrder("fire.docx","prikaz.docx",worker,firedWorker,department);
+        response.setContentType("application/msword");
+        response.setHeader("Content-Disposition", "attachment; filename=document.docx");
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+            FileInputStream fis = new FileInputStream("prikaz.docx");
+            int len;
+            byte[] buf = new byte[1024];
+            while((len = fis.read(buf)) > 0) {
+                bos.write(buf,0,len);
+            }
+            bos.close();
+            response.flushBuffer();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+
+        }
         return "redirect:/";
     }
     @RequestMapping("/new")
@@ -110,7 +129,6 @@ public class WorkerController {
         mav.addObject("dep", dep);
         mav.addObject("worker", worker);
         DocumentCreator doc = new DocumentCreator();
-        //doc.updateDocument("prikaz_priem_na_rabotu.docx","prikaz.docx",worker);
         return mav;
     }
     @RequestMapping("/fired_list")
@@ -121,4 +139,30 @@ public class WorkerController {
         model.addAttribute("firedList",firedList);
         return "fired_list";
     }
+    @RequestMapping("/employ_order/{id}")
+    @ResponseBody
+    public void downloadFile(@PathVariable("id") Long id, HttpServletResponse response) throws IOException {
+        Worker worker = workService.get(id);
+        DocumentCreator doc = new DocumentCreator();
+        doc.createEmployOrder("prikaz_priem_na_rabotu.docx","prikaz.docx",worker);
+        response.setContentType("application/msword");
+        response.setHeader("Content-Disposition", "attachment; filename=document.docx");
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+            FileInputStream fis = new FileInputStream("prikaz.docx");
+            int len;
+            byte[] buf = new byte[1024];
+            while((len = fis.read(buf)) > 0) {
+                bos.write(buf,0,len);
+            }
+            bos.close();
+            response.flushBuffer();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
 }
