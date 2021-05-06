@@ -55,7 +55,7 @@ public class WorkerController {
         return "redirect:/";
     }
     @RequestMapping(value = "/fire", method = RequestMethod.POST)
-    public String fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker, HttpServletResponse response) throws IOException {
+    public void fireWorkers(@ModelAttribute("firedWorker") Fired firedWorker, HttpServletResponse response) throws IOException {
         Worker worker = workService.get(firedWorker.getIdentity());
         Department department = depService.get(worker.getDepartmentId());
         worker.setActive(false);
@@ -77,12 +77,13 @@ public class WorkerController {
             }
             bos.close();
             response.flushBuffer();
+            response.setHeader("Refresh", "0; URL=http://localhost:8080/");
         }
         catch(IOException e) {
             e.printStackTrace();
 
         }
-        return "redirect:/";
+
     }
     @RequestMapping("/new")
     public String showNewProductForm(Model model) {

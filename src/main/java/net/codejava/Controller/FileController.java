@@ -7,11 +7,9 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -55,8 +53,19 @@ public class FileController {
 
     @RequestMapping("/documents")
     public String documentsPage(Model model) {
-        List<Document> list = service.listAll();
-        model.addAttribute("list",list);
+        Document document = new Document();
+        List<Document> templateList = service.getByType("Шаблон");
+        List<Document> lawList = service.getByType("Нормативно-правовой акт");
+        List<Document> reportList = service.getByType("Отчётность");
+        model.addAttribute("document",document);
+        model.addAttribute("templateList", templateList);
+        model.addAttribute("lawList", lawList);
+        model.addAttribute("reportList", reportList);
         return "documents";
+    }
+    @RequestMapping(value = "/add_file", method = RequestMethod.POST)
+    public String saveDepartment(@ModelAttribute("department") Document document) {
+        service.save(document);
+        return "redirect:documents";
     }
 }

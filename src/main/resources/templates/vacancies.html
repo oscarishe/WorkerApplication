@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <title>Product Manager</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<header>
+    <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
+</header>
+    <div align="center">
+        <h1>Активные вакансии:</h1>
+        <div class="vacancy" th:each="vacancy : ${vacancyList}">
+            <h1>Вакансия №<span th:text="${vacancy.id}"></span></h1>
+            <p><b>Должность:</b> <span th:text="${vacancy.position}"></span></p>
+            <p><b>Зарплата:</b> <span th:text="${vacancy.salary}"></span> рублей</p>
+            <p><b>Отдел:</b> <span th:each="department : ${departmentList}" th:if="(${vacancy.department}==${department.id})" th:text="${department.name}"></span></p>
+            <p><b>Дополнительно:</b> <span th:text="${vacancy.info}"></span></p>
+            <a class="vacancy_link" th:href="@{'/archive_vacancy/' + ${vacancy.id}}">Закрыть вакансию</a>
+        </div>
+        <h1 style="color:red;">Вакансии в архиве:</h1>
+        <div class="vacancy" th:each="vacancy : ${archiveList}">
+            <h1>Вакансия №<span th:text="${vacancy.id}"></span></h1>
+            <p><b>Должность:</b> <span th:text="${vacancy.position}"></span></p>
+            <p><b>Зарплата:</b> <span th:text="${vacancy.salary}"></span> рублей</p>
+            <p><b>Отдел:</b> <span th:each="department : ${departmentList}" th:if="(${vacancy.department}==${department.id})" th:text="${department.name}"></span></p>
+            <p><b>Дополнительно:</b> <span th:text="${vacancy.info}"></span></p>
+            <a class="vacancy_link" th:href="@{'/delete_vacancy/' + ${vacancy.id}}">Удалить</a>
+        </div>
+    </div>
+
+</body>
+</html>

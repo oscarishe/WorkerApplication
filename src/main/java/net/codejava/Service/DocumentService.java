@@ -25,4 +25,7 @@ public class DocumentService {
     public Document get(Long id) {
         return repo.findById(id).get();
     }
+    public List<Document> getByType(String type) {
+        return repo.selectByType(type);
+    }
 }

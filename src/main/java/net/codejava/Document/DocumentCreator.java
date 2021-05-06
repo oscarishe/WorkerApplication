@@ -84,6 +84,7 @@ public class DocumentCreator {
                             text = text.replace("position", String.valueOf(worker.getPosition()));
                             r.setText(text, 0);
                         }
+
                     }
                 }
             }
@@ -148,6 +149,14 @@ public class DocumentCreator {
                         }
                         if (text != null && text.contains("department")) {
                             text = text.replace("department", department.getName());
+                            r.setText(text, 0);
+                        }
+                        if (text != null && text.contains("id")) {
+                            text = text.replace("id", String.valueOf(fired.getId()));
+                            r.setText(text, 0);
+                        }
+                        if (text != null && text.contains("number")) {
+                            text = text.replace("number", String.valueOf(worker.getId()));
                             r.setText(text, 0);
                         }
                     }

@@ -13,19 +13,57 @@
     <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
 </header>
     <div align="center">
+        <div class="document_container">
+            <div class="document_element">
     <h1>Шаблоны документов</h1>
-        <a th:href="@{/files/prikaz.docx}">
-        <div class="document_div">
-            <img th:src="@{/assets/images/document.png}"><span>Шаблон заявления о приёме на работу</span>
-        </div>
-        </a>
-        <div th:each="document: ${list}">
+        <div th:each="document: ${templateList}">
             <a th:href="@{'/files/' + ${document.file}}">
                 <div class="document_div">
                     <img th:src="@{/assets/images/document.png}"><span th:text="${document.name}"> </span>
                 </div>
             </a>
         </div>
+            </div>
+            <div class="document_element">
+        <h1>Нормативно-правовые акты</h1>
+        <div th:each="document: ${lawList}">
+            <a th:href="@{'/files/' + ${document.file}}">
+                <div class="document_div">
+                    <img th:src="@{/assets/images/law-book.png}"><span th:text="${document.name}"> </span>
+                </div>
+            </a>
+        </div>
+            </div>
+            <div class="document_element">
+        <h1>Отчётность</h1>
+        <div th:each="document: ${reportList}">
+            <a th:href="@{'/files/' + ${document.file}}">
+                <div class="document_div">
+                    <img th:src="@{/assets/images/report.png}"><span th:text="${document.name}"> </span>
+                </div>
+            </a>
+        </div>
+            </div>
+        </div>
+        <button class="add_file_button" onclick="openFileForm()">Добавить файл</button>
+        <div class="add_file_form" id="add_file_form">
+            <form action="#" th:action="@{/add_file}" th:object="${document}" method="post">
+                <p>Название документа:</p>
+                <input type="text" th:field="*{name}">
+                <br>
+                <p>Файл:</p>
+                <input type="text" th:field="*{file}">
+                <br>
+                <p>Тип документа:</p>
+                <select th:field="*{type}">
+                    <option value="Шаблон">Шаблон</option>
+                    <option value="Нормативно-правовой акт">Нормативно-правовой акт</option>
+                    <option value="Отчётность">Отчётность</option>
+                </select>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
     </div>
+<script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
 </body>
 </html>

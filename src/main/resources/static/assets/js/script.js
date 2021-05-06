@@ -84,6 +84,11 @@ function openSickleaveForm() {
     document.getElementById("workerIdFieldSickleave").value = id;
 
 }
+function openFileForm() {
+    var form = document.getElementById('add_file_form');
+    form.style.display = "block";
+
+}
 $(document).ready(function(){
 
     $("#search").keyup(function(){
