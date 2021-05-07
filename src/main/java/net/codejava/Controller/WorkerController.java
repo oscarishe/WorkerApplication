@@ -30,6 +30,9 @@ public class WorkerController {
     private VacationService vacationService;
     @Autowired
     SickleaveService sickleaveService;
+
+    @Autowired
+    PunishmentService punishmentService;
     @RequestMapping("/workers")
     public String viewHomePage(Model model) throws IOException {
         DocumentCreator doc = new DocumentCreator();
@@ -121,6 +124,9 @@ public class WorkerController {
         List <Vacation> vacationList = vacationService.listById(id);
         List <Sickleave> sickleaveList = sickleaveService.listById(id);
         List <Fired> firedList = fireService.listByWorkerId(id);
+        Punishment punishment = new Punishment();
+        List <Punishment> punishmentList = punishmentService.listByWorkerId(id);
+        mav.addObject("punishment", punishment);
         mav.addObject("vacationList",vacationList);
         mav.addObject("sickleaveList",sickleaveList);
         mav.addObject("sickleave", sickleave);
@@ -129,6 +135,7 @@ public class WorkerController {
         mav.addObject("fired", firedWorker);
         mav.addObject("dep", dep);
         mav.addObject("worker", worker);
+        mav.addObject("punishmentList", punishmentList);
         DocumentCreator doc = new DocumentCreator();
         return mav;
     }

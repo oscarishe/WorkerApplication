@@ -38,6 +38,7 @@
 <button onclick="openSickleaveForm()" class="sick_button">
     Оформить больничный
 </button>
+        <button class="punishment_button" onclick="openPunishmentForm()">Добавить дисциплинарное взыскание</button>
         <br>
 
     </div>
@@ -85,7 +86,46 @@
         <input type="submit" value="Оформить больничный">
     </form>
     </div>
+            <div id="punishmentForm">
+                <form action="#" th:action="@{/punish}" th:object="${punishment}" method="post">
+                    <label>ID:<br>
+                        <input id="workerIdFieldPunishment" th:field ="*{worker}" readonly><br>
+                    </label>
+                    <label>Взыскание:<br>
+                        <input type="text" th:field="*{type}">
+                    </label><br>
+                    <label>Причина:<br>
+                        <input type="text" th:field="*{reason}">
+                    </label><br>
+                    <label>Дата:<br>
+                        <input type="date" th:field="*{date}">
+                    </label>
+                    <br><br>
+                    <input type="submit" value="Оформить взыскание">
+                </form>
+            </div>
     </div>
+</div>
+<h1 align="center">Дисциплинарные взыскания</h1>
+<div class="history">
+    <table class="punishment_history" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Взыскание</th>
+                <th>Причина</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="punishment : ${punishmentList}">
+                <td th:text="${punishment.date}"></td>
+                <td th:text="${punishment.type}"></td>
+                <td th:text="${punishment.reason}"></td>
+                <td><a th:href="@{'/archive_punishment/' + ${punishment.id}}">Снять взыскание</a></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <h1 align="center">История</h1>
 <div class ="history" align="center">

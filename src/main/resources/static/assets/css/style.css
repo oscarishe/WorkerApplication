@@ -4,7 +4,7 @@ th:hover {
     cursor: pointer;
 }
 
-#deleteForm, #vacationForm, #sickleaveForm {
+#deleteForm, #vacationForm, #sickleaveForm, #punishmentForm {
     display:none;
 }
 header {
@@ -45,6 +45,7 @@ body {
 .workers_nav {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .workers {
     margin-bottom: 300px;
@@ -231,7 +232,7 @@ header a {
     height:40px;
     border:none;
     font-weight: bold;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 .delete_button {
     background: #AA0000;
@@ -242,6 +243,26 @@ header a {
 }
 .vacation_button {
     background:#00b8ff;
+}
+.punishment_button {
+    background:orange;
+    color:white;
+}
+.punishment_history {
+    width:100%;
+}
+.punishment_history thead tr {
+    background: orange;
+    color:white;
+    height:35px;
+}
+.punishment_history tbody td {
+    border-bottom: 1px solid black;
+    padding:10px;
+}
+.punishment_history td {
+    border-right: 1px solid black;
+    width:150px;
 }
 .history {
     width:700px;
@@ -288,6 +309,7 @@ input:read-only {
     text-align: center;
     width:30%;
     margin:10px 10px 15px 10px;
+    background: azure;
 }
 .document_div {
     width:700px;
@@ -372,4 +394,29 @@ input:read-only {
     color:white;
     font-weight: bold;
     margin-bottom: 20px;
+}
+.add_department_button {
+    display: block;
+    align:center;
+    background: lawngreen;
+    height:70px;
+    width:200px;
+    margin:auto;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color:black;
+    font-size: 1.6em;
+}
+.department_link {
+    text-decoration: none;
+    font-size:1.1em;
+    background: blue;
+    font-weight: bold;
+    color:white;
+    display: block;
+    width:100px;
+    margin:auto;
+    margin-bottom: 10px;
+    padding:3px;
 }

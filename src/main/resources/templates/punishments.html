@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <title>Product Manager</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+</head>
+<body>
+<header>
+    <h1 class="header_h"><a href="/">Система учета сотрудников</a></h1>
+</header>
+<div align="center">
+    <h1>Активные взыскания</h1>
+    <table id="mainTable" class="worker_table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">ID</th>
+            <th onclick="sortTable(1)">Фамилия</th>
+            <th onclick="sortTable(2)">Имя</th>
+            <th onclick="sortTable(3)">Отчество</th>
+            <th onclick="sortTable(4)">Взыскание</th>
+            <th onclick="sortTable(5)">Причина</th>
+            <th onclick="sortTable(6)">Дата</th>
+            <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="punishment : ${listActive}">
+
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.id}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.surname}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.name}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.patronymic}"></p></td>
+            <td><p th:text="${punishment.type}"></p></td>
+            <td><p th:text="${punishment.reason}"></p></td>
+            <td><p th:text="${punishment.date}"></p></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <h1>История взысканий</h1>
+    <table id="mainTable" class="worker_table punishment_table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">ID</th>
+            <th onclick="sortTable(1)">Дата</th>
+            <th onclick="sortTable(2)">Фамилия</th>
+            <th onclick="sortTable(3)">Имя</th>
+            <th onclick="sortTable(4)">Отчество</th>
+            <th onclick="sortTable(5)">Взыскание</th>
+            <th onclick="sortTable(5)">Причина</th>
+
+            <!--<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>	-->
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="punishment : ${listArchive}">
+            <td><p th:text="${punishment.id}"></p></td>
+            <td><p th:text="${punishment.date}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.surname}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.name}"></p></td>
+            <td><p th:each="worker : ${listWorker}" th:if="(${punishment.worker}==${worker.id})" th:text="${worker.patronymic}"></p></td>
+            <td><p th:text="${punishment.type}"></p></td>
+            <td><p th:text="${punishment.reason}"></p></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
+</body>
+</html>

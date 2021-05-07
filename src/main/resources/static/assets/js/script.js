@@ -84,6 +84,13 @@ function openSickleaveForm() {
     document.getElementById("workerIdFieldSickleave").value = id;
 
 }
+function openPunishmentForm() {
+    var form = document.getElementById('punishmentForm');
+    form.style.display = "block";
+    var id = document.getElementById("workerId").textContent;
+    document.getElementById("workerIdFieldPunishment").value = id;
+
+}
 function openFileForm() {
     var form = document.getElementById('add_file_form');
     form.style.display = "block";
